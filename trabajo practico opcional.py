@@ -56,7 +56,6 @@ while q == 1:
         else:
             break
     while e<3:
-        print(e)
         y = [lista[0][e], lista[1][e], lista[2][e]]
         if y == ["X", "X", "X"] or y == ["O", "O", "O"]:
             print("="*48 + "\n" + "Tablero")
