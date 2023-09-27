@@ -6,6 +6,7 @@ x = 0
 p = 0
 q = 1
 while q == 1:
+    e = 0
     if a == 0:
         b = "X"
         a += 1
@@ -54,7 +55,8 @@ while q == 1:
             break
         else:
             break
-    for e in range(len(lista)):
+    while e<3:
+        print(e)
         y = [lista[0][e], lista[1][e], lista[2][e]]
         if y == ["X", "X", "X"] or y == ["O", "O", "O"]:
             print("="*48 + "\n" + "Tablero")
@@ -63,9 +65,7 @@ while q == 1:
                 p += 1
             print("¡El jugador" + " " + "'" + b + "'" + " " + "es el ganador de esta partida!")
             q = 0
-            break
-        else:
-            break
+        e += 1
     if x == 9:
         print("="*48 + "\n" + "Tablero")
         while p<3:
