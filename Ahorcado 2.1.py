@@ -1,4 +1,5 @@
 import turtle
+import time
 import random
 def position_abc(a):
     for i in range(27):
@@ -34,8 +35,30 @@ def position_all(a,b):
 def res(a,b):
     a = position_all(a,b)
     return(a[len(a)-1]-a[len(a)-2])
-p = ["Avión", "Arándano", "Ademán", "Abejorro", "Aurora", "Compasión", "Complicidad", "Esperanza", "Estéreo", "Efímero", "Erudito", "Gentileza", "Inefable", "Inconmesurable", "Imprescindible", "Importante", "Melancolía", "Nostalgia", "Koala", "Ciudad", "Campo", "Posible", "Proceso", "Realidad", "Mentalidad", "Momento", "Murciélago", "Calidad"]
-x = random.choice(p)
+def find(list, w):
+    start = 0
+    end = len(list) - 1
+
+    while start <= end:
+        mid = (start + end) // 2
+        mid_word = list[mid]
+        if mid_word == w + '\n':
+            return mid
+        elif mid_word < w + '\n':
+            start = mid + 1
+        else:
+            end = mid - 1
+    return -1
+
+try:
+    with open('dict.txt', 'r', encoding='utf-8') as file:
+        p = file.readlines()
+
+    x = random.choice(p)
+except:
+    with open('dict.txt', 'w', encoding='utf-8') as file:
+        file.write("Arándano\n")
+
 z = 35*len(x)
 turtle.title("EL AHORCADO")
 turtle.bgcolor("Black")
@@ -295,4 +318,20 @@ else:
     t3.penup()
     t3.goto(0,-225)
     t3.write("Número de intentos: " + str(len(la)+le), move = False, align = "center", font = ("Consolas", 15, "normal"))
+time.sleep(3)
+tw = turtle.textinput("AHORCADO", "¿Era "+ "'" + x + "'" + " una palabra? (s/n)")
+nw = turtle.textinput("AHORCADO", "Nos gustaría que ingrese una nueva palabra: ")
+if tw == 'n' or tw == 'N':
+    a = find(p, x)
+    print(a)
+    print(p)
+    del p[a]
+    with open('dict.txt', 'w', encoding='utf-8') as file:
+        for word in p:
+            file.write(word)
+if len(str(nw)) > 4 and len(str(nw)) < 15:
+    with open('dict.txt', 'w', encoding='utf-8') as file:
+        for word in p:
+            file.write(word)
+        file.write(nw + "\n")
 turtle.mainloop()
