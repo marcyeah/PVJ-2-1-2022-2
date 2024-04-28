@@ -1,6 +1,8 @@
 import turtle
 import time
 import random
+import os
+
 def position_abc(a):
     for i in range(27):
         abc = "abcdefghijklmnñopqrstuvwxyz"
@@ -50,12 +52,14 @@ def find(list, w):
             end = mid - 1
     return -1
 
+ds = os.path.dirname(__file__)
+ra = os.path.join(ds, 'dict.txt')
 try:
-    with open('dict.txt', 'r', encoding='utf-8') as file:
+    with open(ra, 'r', encoding='utf-8') as file:
         p = file.readlines()
         x = random.choice(p).strip()
 except:
-    with open('dict.txt', 'w', encoding='utf-8') as file:
+    with open(ra, 'w', encoding='utf-8') as file:
         file.write("Arándano\n")
 
 z = 35*len(x)
@@ -323,12 +327,14 @@ nw = turtle.textinput("AHORCADO", "Nos gustaría que ingrese una nueva palabra: 
 if tw == 'n' or tw == 'N':
     a = find(p, x)
     del p[a]
-    with open('dict.txt', 'w', encoding='utf-8') as file:
+    with open(ra, 'w', encoding='utf-8') as file:
         for word in p:
             file.write(word)
+    turtle.bye()
 if len(str(nw)) > 4 and len(str(nw)) < 15:
-    with open('dict.txt', 'w', encoding='utf-8') as file:
+    with open(ra, 'w', encoding='utf-8') as file:
         for word in p:
             file.write(word)
         file.write(nw + "\n")
+    turtle.bye()
 turtle.mainloop()
