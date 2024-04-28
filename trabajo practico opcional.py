@@ -1,5 +1,12 @@
 from random import randint
 
+def nint(val):
+    try:
+        return int(val)
+    except:
+        print("Error, el valor ingresado no es de clase " + '"' + "int" + '"')
+        return 4
+
 lista = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 a = randint(0, 1)
 x = 0
@@ -21,26 +28,20 @@ while q == 1:
         p += 1
     p = 0
     while True:
-        f = int(input("Jugador" + " " + b + ", ingrese la fila (entre 0 y 2): "))
-        c = int(input("Jugador" + " " + b + ", ingrese la columna (entre 0 y 2): "))
-        if f <= 2 and c <= 2 and lista[f][c] == " ":
+        f = nint(input("Jugador" + " " + b + ", ingrese la fila (entre 1 y 3): ")) - 1
+        c = nint(input("Jugador" + " " + b + ", ingrese la columna (entre 1 y 3): ")) - 1
+        if f >= 0 and f < 3 and c >= 0 and c < 3 and lista[f][c] == " ":
             lista[f][c:c+1] = b
             break
-        elif f > 2 or c > 2:
+        elif f == 3 or c == 3:
+            continue
+        elif f <= 0 or f > 4 or c <= 0 or c > 4:
             print("Uno de los números que usted ha ingresado o ambos exceden a los parámetros del juego, por favor respete los parámetros señalados")
-            f = int(input("Jugador" + " " + b + ", ingrese la fila (entre 0 y 2): "))
-            c = int(input("Jugador" + " " + b + ", ingrese la columna (entre 0 y 2): "))
-            if f <= 2 and c <= 2 and lista[f][c] == " ":
-                lista[f][c:c+1] = b
-            break
+            continue
         else:
             if b != " ":
                 print("Este sitio ya está ocupado, por favor elija otra posición")
-            f = int(input("Jugador" + " " + b + ", ingrese la fila (entre 0 y 2): "))
-            c = int(input("Jugador" + " " + b + ", ingrese la columna (entre 0 y 2): "))
-            if f <= 2 and c <= 2 and lista[f][c] == " ":
-                lista[f][c:c+1] = b
-            break
+            continue
     x += 1
     for i in lista:
         d1 = [lista[0][0], lista[1][1], lista[2][2]]
