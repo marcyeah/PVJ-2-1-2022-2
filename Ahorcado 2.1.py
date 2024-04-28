@@ -53,7 +53,14 @@ def find(list, w):
 with open('dict.txt', 'r', encoding='utf-8') as file:
     p = file.readlines()
 
+<<<<<<< HEAD
 x = random.choice(p).strip()
+=======
+    x = random.choice(p).strip()
+except:
+    with open('dict.txt', 'w', encoding='utf-8') as file:
+        file.write("Arándano\n")
+>>>>>>> 31b36ccc193095048660e81a14c615c0b04a936d
 
 z = 35*len(x)
 turtle.title("EL AHORCADO")
