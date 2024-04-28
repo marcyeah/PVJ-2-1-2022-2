@@ -54,7 +54,7 @@ try:
     with open('dict.txt', 'r', encoding='utf-8') as file:
         p = file.readlines()
 
-    x = random.choice(p)
+    x = random.choice(p).strip()
 except:
     with open('dict.txt', 'w', encoding='utf-8') as file:
         file.write("Arándano\n")
