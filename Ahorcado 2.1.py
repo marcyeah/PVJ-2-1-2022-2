@@ -52,7 +52,7 @@ def find(list, w):
 
 try:
     with open('dict.txt', 'r', encoding='utf-8') as file:
-    x = random.choice(p).strip()
+        x = random.choice(p).strip()
 except:
     with open('dict.txt', 'w', encoding='utf-8') as file:
         file.write("Arándano\n")
