@@ -50,14 +50,10 @@ def find(list, w):
             end = mid - 1
     return -1
 
-try:
-    with open('dict.txt', 'r', encoding='utf-8') as file:
-        p = file.readlines()
+with open('dict.txt', 'r', encoding='utf-8') as file:
+    p = file.readlines()
 
-    x = random.choice(p)
-except:
-    with open('dict.txt', 'w', encoding='utf-8') as file:
-        file.write("Arándano\n")
+x = random.choice(p).strip()
 
 z = 35*len(x)
 turtle.title("EL AHORCADO")
@@ -323,8 +319,6 @@ tw = turtle.textinput("AHORCADO", "¿Era "+ "'" + x + "'" + " una palabra? (s/n)
 nw = turtle.textinput("AHORCADO", "Nos gustaría que ingrese una nueva palabra: ")
 if tw == 'n' or tw == 'N':
     a = find(p, x)
-    print(a)
-    print(p)
     del p[a]
     with open('dict.txt', 'w', encoding='utf-8') as file:
         for word in p:
