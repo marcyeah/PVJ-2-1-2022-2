@@ -4,7 +4,7 @@ def nint(val):
     try:
         return int(val)
     except:
-        print("Error, el valor ingresado no es de clase " + '"' + "int" + '"')
+        print("Error: el valor ingresado no es de clase " + '"' + "int" + '"')
         return -1
 
 lista = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
@@ -21,30 +21,30 @@ while q == 1:
         b = "O"
         a -= 1
     if x == 0:
-        print ("Empieza el jugador", b)
+        print ("Empieza el jugador '" + b + "'")
     print("="*48 + "\n" + "Tablero")
     while p<3:
         print("|", lista[p][0], "|", lista[p][1], "|", lista[p][2], "|")
         p += 1
     p = 0
     while True:
-        f = nint(input("Jugador" + " " + b + ", ingrese la fila (entre 1 y 3): ")) - 1
+        f = nint(input("Jugador '" + b + "', ingrese la fila (1-3): ")) - 1
         if f == -2:
             continue
         elif f < 0 or f > 2:
-            print("El valor que usted ha ingresado excede los parámetros del juego, por favor respete los parámetros señalados")
+            print("Error: el valor que usted ha ingresado excede los parámetros dados")
             continue
-        c = nint(input("Jugador" + " " + b + ", ingrese la columna (entre 1 y 3): ")) - 1
+        c = nint(input("Jugador" + " " + b + ", ingrese la columna (1-3): ")) - 1
         if c == -2:
             continue
         if c < 0 or c > 2:
-            print("El valor que usted ha ingresado excede los parámetros del juego, por favor respete los parámetros señalados")
+            print("Error: el valor que usted ha ingresado excede los parámetros del juego, por favor respete los parámetros señalados")
             continue
         elif f >= 0 and f < 3 and c >= 0 and c < 3 and lista[f][c] == " ":
             lista[f][c:c+1] = b
             break
         elif b != " ":
-            print("Este sitio ya está ocupado, por favor elija otra posición")
+            print("Error: este sitio ya está ocupado, por favor elija otra posición")
             continue
     x += 1
     for i in lista:
@@ -55,7 +55,7 @@ while q == 1:
             while p<3:
                 print("|", lista[p][0], "|", lista[p][1], "|", lista[p][2], "|")
                 p += 1
-            print("¡El jugador" + " " + "'" + b + "'" + " " + "es el ganador de esta partida!")
+            print("¡El jugador '" + b + "' es el ganador de esta partida!")
             q = 0
             break
         else:
@@ -67,7 +67,7 @@ while q == 1:
             while p<3:
                 print("|", lista[p][0], "|", lista[p][1], "|", lista[p][2], "|")
                 p += 1
-            print("¡El jugador" + " " + "'" + b + "'" + " " + "es el ganador de esta partida!")
+            print("¡El jugador '" + b + "' es el ganador de esta partida!")
             q = 0
         e += 1
     if x == 9:
