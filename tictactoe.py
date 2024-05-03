@@ -5,7 +5,7 @@ def nint(val):
         return int(val)
     except:
         print("Error, el valor ingresado no es de clase " + '"' + "int" + '"')
-        return 4
+        return -1
 
 lista = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 a = randint(0, 1)
@@ -29,18 +29,22 @@ while q == 1:
     p = 0
     while True:
         f = nint(input("Jugador" + " " + b + ", ingrese la fila (entre 1 y 3): ")) - 1
+        if f == -2:
+            continue
+        elif f < 0 or f > 2:
+            print("El valor que usted ha ingresado excede los parámetros del juego, por favor respete los parámetros señalados")
+            continue
         c = nint(input("Jugador" + " " + b + ", ingrese la columna (entre 1 y 3): ")) - 1
-        if f >= 0 and f < 3 and c >= 0 and c < 3 and lista[f][c] == " ":
+        if c == -2:
+            continue
+        if c < 0 or c > 2:
+            print("El valor que usted ha ingresado excede los parámetros del juego, por favor respete los parámetros señalados")
+            continue
+        elif f >= 0 and f < 3 and c >= 0 and c < 3 and lista[f][c] == " ":
             lista[f][c:c+1] = b
             break
-        elif f == 3 or c == 3:
-            continue
-        elif f <= 0 or f > 4 or c <= 0 or c > 4:
-            print("Uno de los números que usted ha ingresado o ambos exceden a los parámetros del juego, por favor respete los parámetros señalados")
-            continue
-        else:
-            if b != " ":
-                print("Este sitio ya está ocupado, por favor elija otra posición")
+        elif b != " ":
+            print("Este sitio ya está ocupado, por favor elija otra posición")
             continue
     x += 1
     for i in lista:
