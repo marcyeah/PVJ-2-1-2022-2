@@ -27,7 +27,7 @@ while q == 1:
         b = "O"
         a -= 1
     if x == 0:
-        print ("Empieza el jugador", b)
+        print ("Empieza el jugador '" + b + "'")
     print("="*48 + "\n" + "Tablero")
     while p<3:
         print("|", lista[p][0], "|", lista[p][1], "|", lista[p][2], "|")
@@ -42,13 +42,13 @@ while q == 1:
         if c == -2:
             continue
         elif f < 0 or f > 2 or c < 0 or c > 2:
-            print("Los valores ingresados exceden los parametros dados (1-3)")
+            print("Error: los valores ingresados exceden los parámetros dados (1-3)")
             continue
         elif f >= 0 and f < 3 and c >= 0 and c < 3 and lista[f][c] == " ":
             lista[f][c:c+1] = b
             break
         elif b != " ":
-            print("Este sitio ya está ocupado, por favor elija otra posición")
+            print("Error: este sitio ya está ocupado, por favor elija otra posición")
             continue
     x += 1
     for i in lista:
