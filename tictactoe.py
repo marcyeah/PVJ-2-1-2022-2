@@ -28,7 +28,7 @@ while q == 1:
         p += 1
     p = 0
     while True:
-        f = nint(input("Jugador '" + b + "', ingrese la fila (1-3): ")) - 1
+        f = nint(input("Jugador '" + b + "' ingrese la fila (1-3): ")) - 1
         if f == -2:
             continue
         elif f < 0 or f > 2:
