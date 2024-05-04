@@ -90,28 +90,35 @@ while q == 1:
         break
 while q == 2:
     e = 0
-    b = input("Elige 'X'/'O': ")
-    if b == "X" and x == "0":
-        a = 0
-    elif a == 0:
+    if x == 0:
+        b = input("Elige 'X'/'O': ")
+        if b == "X":
+            a = 0
+        if b == "O":
+            a = 1
+    if a == 0:
         b == "X"
-        a += 1
-    if b == "O" and x == "0":
-        a = 1
-    elif a == 1:
+    if a == 1:
         b = "O"
-        a -= 1
     if x == 0:
         print ("Empieza el jugador '" + b + "'")
     elif x > 0:
-        print("Turno del jugador '" + b + "'")
+        if x % 2 == 1:
+            print("Turno de la máquina")
+        elif x % 2 == 0:
+            print("Turno del jugador '" + b + "'")
     print("="*48 + "\n" + "[f]" + '    ' "Tablero")
     while p<3:
         print(' ' + str(p+1) + ' ' + "[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
         p += 1
     p = 0
     print('     ' + '1' + '    ' + '2' + '    ' + '3' + '  ' + '[c]')
-    while True:
+    if x % 2 != 0:
+        for i in matriz:
+            f = randint(1,3) - 1
+        for j in matriz:
+            c = randint(1,3) - 1
+    while x % 2 == 0:
         cord = input("Jugador '" + b + "' ingrese las coordenadas en el formato (f,c): ")
         f = val(cord, 0)
         if f == -1 or f == -2:
