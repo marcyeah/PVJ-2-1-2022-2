@@ -12,6 +12,7 @@ a = randint(0, 1)
 x = 0
 p = 0
 q = 1
+print("TicTacToe - Original Version")
 while q == 1:
     e = 0
     if a == 0:
