@@ -4,7 +4,7 @@ def nint(val):
     try:
         return int(val)
     except:
-        print("Error: el valor ingresado no es de clase " + '"' + "int" + '"')
+        print("Error: el valor ingresado no es de clase " + "'int'")
         return -1
 
 matriz = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]

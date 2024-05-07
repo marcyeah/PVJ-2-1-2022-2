@@ -1,10 +1,11 @@
-from random import randint
+import random
+import time
 
 def nint(val):
     try:
         return int(val)
     except:
-        print("Error: el valor ingresado '" + val + "' no es de clase " + '"' + "int" + '"')
+        print("Error: el valor ingresado '" + val + "' no es de clase " + "'int'")
         return -1
 def val(cord, c):       
     try:
@@ -16,13 +17,23 @@ def game_mode(q):
     try:
         return(int(q))
     except:
-        print("Error: el valor ingresado excede los parámetros dados, saliendo del juego...")
+        print("Error: el valor ingresado no es de clase 'int'")
+        return -1
 matriz = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
-a = randint(0, 1)
+a = random.randint(0, 1)
 x = 0
 p = 0
 print("TicTacToe - cord version")
-q = game_mode(input("Elige el modo de juego pc(1)/pvp(2): "))
+while True:
+    q = game_mode(input("Elige el modo de juego pvp(1)/pc(2): "))
+    if (q > 2 or q < 1) and q != -1:
+        print("Error: el valor ingresado excede los parámetros dados, vuelva a intentar")
+        continue
+    elif q == -1:
+        continue 
+    else: 
+        break
+lock = 0
 while q == 1:
     e = 0
     if a == 0:
@@ -88,36 +99,53 @@ while q == 1:
             p += 1
         print("Empate, no hay ganadores")
         break
+    
 while q == 2:
     e = 0
     if x == 0:
         b = input("Elige 'X'/'O': ")
-        if b == "X":
-            a = 0
-        if b == "O":
-            a = 1
-    if a == 0:
-        b == "X"
-    if a == 1:
-        b = "O"
-    if x == 0:
-        print ("Empieza el jugador '" + b + "'")
-    elif x > 0:
-        if x % 2 == 1:
-            print("Turno de la máquina")
-        elif x % 2 == 0:
-            print("Turno del jugador '" + b + "'")
-    print("="*48 + "\n" + "[f]" + '    ' "Tablero")
-    while p<3:
-        print(' ' + str(p+1) + ' ' + "[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
-        p += 1
-    p = 0
-    print('     ' + '1' + '    ' + '2' + '    ' + '3' + '  ' + '[c]')
-    if x % 2 != 0:
-        for i in matriz:
-            f = randint(1,3) - 1
-        for j in matriz:
-            c = randint(1,3) - 1
+    if x % 2 == 1:
+        if b == 'O':
+            b = 'X'
+        else:
+            b = 'O'
+        print("Turno de la pc '" + b + "'")
+    elif x % 2 == 0:
+        if b == 'O' and x != 0:
+            b = 'X'
+        elif x != 0:
+            b = 'O'
+        print("Turno del jugador '" + b + "'")
+        print("="*48 + "\n" + "[f]" + '    ' "Tablero")
+        while p<3 and x % 2 == 0:
+            print(' ' + str(p+1) + ' ' + "[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
+            p += 1
+        p = 0
+        print('     ' + '1' + '    ' + '2' + '    ' + '3' + '  ' + '[c]')
+    if x % 2 == 1:
+        time.sleep(2)
+        cont = 0
+        while lock == 0:
+            if cont == 4:
+                lock = 1
+            f = random.choice([0,2])
+            c = random.choice([0,2])
+            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
+                matriz[f][c:c+1] = b
+                break
+            cont += 1
+        while lock == 1:
+            f = random.randint(0,2)
+            c = random.randint(0,2)
+            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
+                matriz[f][c:c+1] = b
+                break
+        print("="*48 + "\n" + "    Tablero")
+        while p<3:
+            print("[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
+            p += 1
+        p = 0
+        time.sleep(3)
     while x % 2 == 0:
         cord = input("Jugador '" + b + "' ingrese las coordenadas en el formato (f,c): ")
         f = val(cord, 0)
@@ -130,7 +158,17 @@ while q == 2:
             print("Error: los valores ingresados exceden los parámetros dados")
             continue
         elif f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
+            if a == 0:
+                a += 1
+            if a == 1:
+                a -= 1
             matriz[f][c:c+1] = b
+            print("="*48 + "\n" + "[f]" + '    ' "Tablero")
+            while p<3 and x % 2 == 0:
+                print(' ' + str(p+1) + ' ' + "[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
+                p += 1
+            p = 0
+            print('     ' + '1' + '    ' + '2' + '    ' + '3' + '  ' + '[c]')
             break
         elif b != " ":
             print("Error: este sitio ya está ocupado, por favor elija otra posición")
@@ -148,7 +186,7 @@ while q == 2:
             print("¡El jugador '" + b + "' es el ganador de esta partida!")
             q = 0
             break
-    while e<3:
+    while e<3 and p<3:
         y = [matriz[0][e], matriz[1][e], matriz[2][e]]
         if y == ["X", "X", "X"] or y == ["O", "O", "O"]:
             print("="*48 + "\n" + "    Tablero")
@@ -158,7 +196,7 @@ while q == 2:
             print("¡El jugador '" + b + "' es el ganador de esta partida!")
             q = 0
         e += 1
-    if x == 9:
+    if x == 9 and p<3:
         print("="*48 + "\n" + "    Tablero")
         while p<3:
             print("[", matriz[p][0], "][", matriz[p][1], "][", matriz[p][2], "]")
