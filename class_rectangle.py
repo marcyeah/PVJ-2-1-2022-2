@@ -26,5 +26,3 @@ def main():
     a1 = r.calcularEsquina()
     print(a1)
 main()
-        
-        

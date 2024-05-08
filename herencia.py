@@ -1,4 +1,6 @@
-'''class transporte:
+#Ejemplo 1
+'''
+class transporte:
     def __init__(self, velocidad, capacidad):
         self.velocidad = velocidad
         self.capacidad = capacidad
@@ -17,13 +19,17 @@ def tipo(vehiculo):
 def main():
     vehiculo = auto(200, 30, "Azul", "BD467F", "Los Angeles")
     tipo(vehiculo)
-main()'''
+main()
+'''
 
-'''class Animal:
+#Ejemplo 2
+'''
+class Animal:
     def __init__(self, color, peso):
         self.color = color
         self.peso = peso
 class Ave(Animal):
     def __init__(self, color, peso, tipo):
 class Perro(Animal):
-    def __init__(self, color, peso, raza):'''
+    def __init__(self, color, peso, raza):
+'''
