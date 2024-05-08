@@ -1,2 +1,2 @@
 # python
-# recordar es volver a vivir XD
+# recordar es volver a vivir
