@@ -1,2 +1,2 @@
 # python
-# recordar es volver a programar
+recordar es volver a programar
