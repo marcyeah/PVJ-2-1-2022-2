@@ -12,14 +12,14 @@ def tablero(tab, mode):
         cont = 1
         col = ['1', '2', '3']
         print("="*48 + "\n[f]    Tablero")
-        for row in tab:
-            print(' ' + str(cont) + " [", " ][ ".join(row),"]")
+        for i in tab:
+            print(' ' + str(cont) + " [", " ][ ".join(i),"]")
             cont += 1
         print('     ' + '    '.join(col) + '  [c]')
     if mode == 1:
         print("="*48 + "\n    Tablero")
-        for row in tab:
-            print("[", " ][ ".join(row),"]")
+        for i in tab:
+            print("[", " ][ ".join(i),"]")
 def victoria(tab, p):
     for i in tab:
         if all(pos == p for pos in i):
@@ -34,7 +34,7 @@ def game_mode():
     while True:
         q = nint(input("Elige el modo de juego pvp(1)/pc(2): "))
         if (q > 2 or q < 1) and q != -1:
-            print("Error: el valor ingresado excede los parámetros dados, vuelva a intentar")
+            print("Error: el valor ingresado excede los parámetros dados")
             continue
         elif q == -1:
             continue 
@@ -93,43 +93,23 @@ while q == 1:
 
 while q == 2:
     e = 0
-    if x == 0:
+    while x == 0:
         b = input("Elige 'X'/'O': ")
-    if x % 2 == 1:
-        if b == 'O':
+        if b not in ['X', 'O', 'x', 'o']:
+            print("Error: el valor ingresado excede los parámetros dados")
+            continue
+        if b == 'x':
             b = 'X'
         else:
             b = 'O'
-        print(f"Turno de la pc '{b}'")
-    elif x % 2 == 0:
+        break
+    while x % 2 == 0:
         if b == 'O' and x != 0:
             b = 'X'
-        else:
+        elif b == 'X' and x != 0:
             b = 'O'
         print(f"Turno del jugador '{b}'")
         tablero(matriz, 0)
-    if x % 2 == 1:
-        time.sleep(2)
-        cont = 0
-        while lock == 0:
-            if cont == 4:
-                lock = 1
-            f = random.choice([0,2])
-            c = random.choice([0,2])
-            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
-                matriz[f][c:c+1] = b
-                break
-            cont += 1
-        while lock == 1:
-            f = random.randint(0,2)
-            c = random.randint(0,2)
-            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
-                matriz[f][c:c+1] = b
-                break
-        x += 1
-        tablero(matriz, 1)
-        time.sleep(3)
-    while x % 2 == 0:
         while True:
             f = nint(input(f"Jugador {b} ingrese la fila [f]: ")) - 1
             if f == -2:
@@ -152,7 +132,35 @@ while q == 2:
         else:
             matriz[f][c:c+1] = b
             x += 1
+            if b == 'O' and x != 0:
+                b = 'X'
+            elif b == 'X' and x != 0:
+                b = 'O'
             break
+    print()
+    if x % 2 == 1:
+        print(f"Turno de la pc '{b}'")
+        time.sleep(2)
+        cont = 0
+        while lock == 0:
+            if cont == 4:
+                lock = 1
+            f = random.choice([0,2])
+            c = random.choice([0,2])
+            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
+                matriz[f][c:c+1] = b
+                break
+            cont += 1
+        while lock == 1:
+            f = random.randint(0,2)
+            c = random.randint(0,2)
+            if f >= 0 and f < 3 and c >= 0 and c < 3 and matriz[f][c] == " ":
+                matriz[f][c:c+1] = b
+                break
+        x += 1
+        tablero(matriz,1)
+        print(f"La computadora elige la posición f:{f+1}, c:{c+1}")
+        time.sleep(3)
     print()
     if victoria(matriz, b):
             tablero(matriz, 1)
